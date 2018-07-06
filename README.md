@@ -19,14 +19,15 @@ pytzwhere (github), but aims at providing improved performance and usability.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/timezonefinder-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/timezonefinder-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/timezonefinder-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/timezonefinder-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/timezonefinder-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/timezonefinder-feedstock/branch/master)
+All platforms:
+[![noarch](https://img.shields.io/circleci/project/github/conda-forge/timezonefinder-feedstock/master.svg?label=noarch)](https://circleci.com/gh/conda-forge/timezonefinder-feedstock)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/timezonefinder/badges/version.svg)](https://anaconda.org/conda-forge/timezonefinder)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/timezonefinder/badges/downloads.svg)](https://anaconda.org/conda-forge/timezonefinder)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-timezonefinder-green.svg)](https://anaconda.org/conda-forge/timezonefinder) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/timezonefinder.svg)](https://anaconda.org/conda-forge/timezonefinder) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/timezonefinder.svg)](https://anaconda.org/conda-forge/timezonefinder) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/timezonefinder.svg)](https://anaconda.org/conda-forge/timezonefinder) |
 
 Installing timezonefinder
 =========================
