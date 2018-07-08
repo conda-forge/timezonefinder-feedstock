@@ -23,6 +23,7 @@ requirements:
     - python
     - numpy
     - numba
+    - six
 
 test:
   imports:
