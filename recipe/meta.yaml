@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "2.1.2" %}
-{% set sha256 = "c5cc89f2972153b98e1adceb651ba90901433906bb5ff9a0b84a263baaea996d" %}
+{% set version = "3.0.1" %}
+{% set sha256 = "8436080c26a869ea74922bdbadac3c2524cb1cf574ff5b52a9870b3c4adbd7db" %}
 
 package:
   name: {{ name|lower }}
@@ -12,17 +12,20 @@ source:
   sha256: {{ sha256 }}
 
 build:
+  noarch: python
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
+    - pip
     - python
     - setuptools
   run:
     - python
     - numpy
     - numba
+    - six
 
 test:
   imports:
