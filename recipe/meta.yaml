@@ -23,6 +23,7 @@ requirements:
     - setuptools
   run:
     - python
+    - importlib_resources  # [py<37]
     - numpy
     - numba
     - six
