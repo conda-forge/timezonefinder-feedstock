@@ -23,7 +23,7 @@ requirements:
     - setuptools
   run:
     - python
-    - importlib_resources  # [py<37]
+    - importlib_resources
     - numpy
     - numba
     - six
@@ -33,7 +33,6 @@ test:
     - timezonefinder
     - timezonefinder.timezonefinder
     - timezonefinder.helpers
-    - timezonefinder.functional
 
 about:
   home: https://github.com/MrMinimal64/timezonefinder
