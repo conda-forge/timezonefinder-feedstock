@@ -19,8 +19,9 @@ pytzwhere (github), but aims at providing improved performance and usability.
 Current build status
 ====================
 
-All platforms:
-[![noarch](https://img.shields.io/circleci/project/github/conda-forge/timezonefinder-feedstock/master.svg?label=noarch)](https://circleci.com/gh/conda-forge/timezonefinder-feedstock)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/timezonefinder-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/timezonefinder-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/timezonefinder-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/timezonefinder-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/timezonefinder-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/timezonefinder-feedstock/branch/master)
 
 Current release info
 ====================
