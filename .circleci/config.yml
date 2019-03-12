@@ -1,7 +1,3 @@
-# This file was generated automatically from conda-smithy. To update this configuration,
-# update the conda-forge.yml and/or the recipe/meta.yaml.
-# -*- mode: yaml -*-
-
 version: 2
 
 jobs:
@@ -18,7 +14,7 @@ jobs:
             ./.circleci/fast_finish_ci_pr_build.sh
             ./.circleci/checkout_merge_commit.sh
       - run:
-          command: docker pull condaforge/linux-anvil-comp7
+          command: docker pull condaforge/linux-anvil
       - run:
           # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
           command: ./.circleci/run_docker_build.sh
