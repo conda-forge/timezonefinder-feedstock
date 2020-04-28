@@ -19,10 +19,10 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python 3
     - setuptools
   run:
-    - python
+    - python 3
     - importlib_resources
     - numpy
     - numba
@@ -39,9 +39,9 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'A lightweight python library for finding the timezone of any point on earth (coordinates), but fast! '
+  summary: 'fast python package for finding the timezone of any point on earth (coordinates) offline'
   description: |
-    This is a fast and lightweight python project for looking up the
+    This is a fast and lightweight python package for looking up the corresponding timezone for given 
     corresponding timezone for a given lat/lng on earth entirely offline.
 
     This project is derived from and has been successfully tested against
