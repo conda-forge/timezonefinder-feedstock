@@ -7,9 +7,9 @@ Package license: MIT
 
 Feedstock license: BSD 3-Clause
 
-Summary: A lightweight python library for finding the timezone of any point on earth (coordinates), but fast! 
+Summary: fast python package for finding the timezone of any point on earth (coordinates) offline
 
-This is a fast and lightweight python project for looking up the
+This is a fast and lightweight python package for looking up the corresponding timezone for given
 corresponding timezone for a given lat/lng on earth entirely offline.
 
 This project is derived from and has been successfully tested against
@@ -72,7 +72,7 @@ A feedstock is made up of a conda recipe (the instructions on what and how to bu
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
+and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
 [Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 

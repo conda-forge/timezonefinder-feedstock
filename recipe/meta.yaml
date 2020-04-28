@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "4.1.0" %}
-{% set sha256 = "0569558a0343e5c0ff6a6d92dc30725ddedec13b6b57fa642c70121dd33496a3" %}
+{% set version = "4.3.0" %}
+{% set sha256 = "77dc7dc3de1f808e37048dc3217c5a0ebd2001c24bb544c5cefec09c84b159a1" %}
 
 package:
   name: {{ name|lower }}
@@ -14,15 +14,16 @@ source:
 build:
   noarch: python
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - pip
-    - python
+    - python 3
     - setuptools
+    - numpy
   run:
-    - python
+    - python 3
     - importlib_resources
     - numpy
     - numba
@@ -39,9 +40,9 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'A lightweight python library for finding the timezone of any point on earth (coordinates), but fast! '
+  summary: 'fast python package for finding the timezone of any point on earth (coordinates) offline'
   description: |
-    This is a fast and lightweight python project for looking up the
+    This is a fast and lightweight python package for looking up the corresponding timezone for given 
     corresponding timezone for a given lat/lng on earth entirely offline.
 
     This project is derived from and has been successfully tested against
