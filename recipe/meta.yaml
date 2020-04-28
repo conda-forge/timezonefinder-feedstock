@@ -21,6 +21,7 @@ requirements:
     - pip
     - python 3
     - setuptools
+    - numpy
   run:
     - python 3
     - importlib_resources
