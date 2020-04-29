@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "4.3.0" %}
-{% set sha256 = "77dc7dc3de1f808e37048dc3217c5a0ebd2001c24bb544c5cefec09c84b159a1" %}
+{% set version = "4.3.1" %}
+{% set sha256 = "fdc5a85655fcc96d96ce52bc8449147b2b2b6b02275a6d9e2d10521155e51af2" %}
 
 package:
   name: {{ name|lower }}
@@ -40,7 +40,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'fast python package for finding the timezone of any point on earth (coordinates) offline'
+  summary: fast python package for finding the timezone of any point on earth (coordinates) offline
   description: |
     This is a fast and lightweight python package for looking up the corresponding timezone for given 
     corresponding timezone for a given lat/lng on earth entirely offline.
