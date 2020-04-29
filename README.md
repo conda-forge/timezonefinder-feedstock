@@ -9,10 +9,11 @@ Feedstock license: BSD 3-Clause
 
 Summary: fast python package for finding the timezone of any point on earth (coordinates) offline
 
-This is a fast and lightweight python package for looking up the corresponding
-timezone for given coordinates on earth entirely offline.
+This is a fast and lightweight python package for looking up the corresponding timezone for given
+corresponding timezone for a given lat/lng on earth entirely offline.
 
-For more refer to the documentation: https://timezonefinder.readthedocs.io/en/latest/
+This project is derived from and has been successfully tested against
+pytzwhere (github), but aims at providing improved performance and usability.
 
 
 Current build status
