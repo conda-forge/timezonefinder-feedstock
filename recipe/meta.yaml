@@ -27,7 +27,6 @@ requirements:
     - importlib_resources
     - numpy
     - numba
-    - six
 
 test:
   imports:
