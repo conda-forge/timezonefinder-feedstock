@@ -5,4 +5,4 @@ channel_targets:
 docker_image:
 - condaforge/linux-anvil-comp7
 numpy:
-- '1.14'
+- '1.16'

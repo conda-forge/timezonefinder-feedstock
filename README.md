@@ -5,7 +5,7 @@ Home: https://github.com/MrMinimal64/timezonefinder
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: fast python package for finding the timezone of any point on earth (coordinates) offline
 
