@@ -24,7 +24,6 @@ requirements:
     - numpy
   run:
     - python 3
-    - importlib_resources
     - numpy
     - numba
 
