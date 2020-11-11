@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
@@ -24,7 +24,6 @@ requirements:
     - numpy
   run:
     - python 3
-    - importlib_resources
     - numpy
     - numba
 
