@@ -23,9 +23,9 @@ requirements:
     - setuptools
   run:
     - python 3
-    - numpy>=1.20.3
-    - h3>=3.7.3
-    - numba>=0.55
+    - numpy >=1.20.3
+    - h3 >=3.7.3
+    - numba >=0.55
 
 test:
   imports:
@@ -48,4 +48,3 @@ about:
 extra:
   recipe-maintainers:
     - snowman2
-    - jannikmi
