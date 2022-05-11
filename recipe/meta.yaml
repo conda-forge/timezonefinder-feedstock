@@ -20,7 +20,7 @@ requirements:
   host:
     - pip
     - python 3
-    - setuptools
+    - poetry
   run:
     - python 3
     - numpy >=1.20.3
