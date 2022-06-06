@@ -34,6 +34,10 @@ test:
     - poetry
   commands:
     - tox
+  source_files:
+    - tox.ini
+    - test/
+
 #  imports:
 #    - timezonefinder
 #    - timezonefinder.timezonefinder
