@@ -1,7 +1,7 @@
 About timezonefinder
 ====================
 
-Home: https://github.com/MrMinimal64/timezonefinder
+Home: https://timezonefinder.michelfe.it/gui
 
 Package license: MIT
 
@@ -9,13 +9,10 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/timezonefinder-
 
 Summary: fast python package for finding the timezone of any point on earth (coordinates) offline
 
-Development: https://github.com/MrMinimal64/timezonefinder
+Development: https://github.com/jannikmi/timezonefinder
 
 This is a fast and lightweight python package for looking up the corresponding timezone for given
 corresponding timezone for a given lat/lng on earth entirely offline.
-
-This project is derived from and has been successfully tested against
-pytzwhere (github), but aims at providing improved performance and usability.
 
 
 Current build status
