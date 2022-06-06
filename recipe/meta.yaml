@@ -34,7 +34,7 @@ test:
     - poetry
   commands:
     - tox
-  source_files:
+  files:
     - tox.ini
     - test/
 
