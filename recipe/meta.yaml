@@ -17,11 +17,13 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  host:
+  build:
+    - python
     - pip
-    - python 3
-    - numpy
-    - h3
+    - poetry
+  host:
+    - python
+    - poetry
   run:
     - python 3
     - numpy
@@ -29,6 +31,11 @@ requirements:
     - numba
 
 test:
+  requires:
+    - tox
+    - poetry
+  commands:
+    - tox
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
