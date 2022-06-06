@@ -18,8 +18,8 @@ build:
 
 requirements:
   host:
-    - python
     - pip
+    - python 3
     - setuptools
   run:
     - python 3
