@@ -20,7 +20,7 @@ requirements:
   host:
     - python
     - pip
-    - poetry
+    - setuptools
   run:
     - python 3
     - numpy
