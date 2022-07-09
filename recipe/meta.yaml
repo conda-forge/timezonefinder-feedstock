@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "5.2.0" %}
-{% set sha256 = "a374570295a8dbd923630ce85f754e52578e288cb0a9cf575834415e84758352" %}
+{% set version = "6.0.2" %}
+{% set sha256 = "62bc28ab89b9159bbd195c4512eaaceeacb7daaf714354b0fe2aea59b1245a0d" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
