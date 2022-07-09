@@ -22,6 +22,8 @@ requirements:
     - python 3
     - setuptools
     - poetry
+    - numpy
+    - h3
   run:
     - python 3
     - numpy
