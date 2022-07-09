@@ -22,6 +22,7 @@ requirements:
     - python 3
     - poetry
     - numpy
+    - h3
   run:
     - python 3
     - numpy
