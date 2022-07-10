@@ -33,7 +33,15 @@ test:
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
-    - timezonefinder.helpers
+  requires:
+    - poetry
+	- tox
+	- pytest
+  commands:
+    - tox
+  files:
+    - tox.ini
+    - tests/
 
 about:
   home: https://github.com/MrMinimal64/timezonefinder
