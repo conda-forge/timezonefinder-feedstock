@@ -20,7 +20,6 @@ requirements:
   host:
     - pip
     - python 3
-    - setuptools
     - poetry
     - numpy
     - h3
@@ -31,6 +30,10 @@ requirements:
     - numba
 
 test:
+  requires:
+    - poetry
+    - numpy
+    - h3
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
