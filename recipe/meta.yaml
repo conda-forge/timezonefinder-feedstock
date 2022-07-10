@@ -31,15 +31,6 @@ test:
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
-  requires:
-    - poetry
-    - tox
-    - pytest
-  commands:
-    - tox
-  files:
-    - tox.ini
-    - tests/
 
 about:
   home: https://timezonefinder.michelfe.it/gui
