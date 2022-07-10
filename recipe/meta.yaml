@@ -21,12 +21,10 @@ requirements:
     - pip
     - python 3
     - poetry
-    - numpy
-    - h3
   run:
     - python 3
     - numpy
-    - h3
+    - h3-py
     - numba
 
 test:
@@ -44,7 +42,7 @@ test:
     - tests/
 
 about:
-  home: https://github.com/MrMinimal64/timezonefinder
+  home: https://timezonefinder.michelfe.it/gui
   license: MIT
   license_family: MIT
   license_file: LICENSE
@@ -53,9 +51,7 @@ about:
     This is a fast and lightweight python package for looking up the corresponding timezone for given 
     corresponding timezone for a given lat/lng on earth entirely offline.
 
-    This project is derived from and has been successfully tested against
-    pytzwhere (github), but aims at providing improved performance and usability.
-  dev_url: https://github.com/MrMinimal64/timezonefinder
+  dev_url: https://github.com/jannikmi/timezonefinder
 
 extra:
   recipe-maintainers:
