@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "6.0.0" %}
-{% set sha256 = "90228f7bcf60388868ac95d3d6a8c9f710c766990909cb89dc39a893da7132ad" %}
+{% set version = "6.0.2" %}
+{% set sha256 = "62bc28ab89b9159bbd195c4512eaaceeacb7daaf714354b0fe2aea59b1245a0d" %}
 
 package:
   name: {{ name|lower }}
