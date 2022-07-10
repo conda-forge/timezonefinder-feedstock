@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
@@ -21,19 +21,13 @@ requirements:
     - pip
     - python 3
     - poetry
-    - numpy
-    - h3
   run:
     - python 3
     - numpy
-    - h3
+    - h3-py
     - numba
 
 test:
-  requires:
-    - poetry
-    - numpy
-    - h3
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
