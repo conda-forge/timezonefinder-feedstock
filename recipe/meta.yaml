@@ -31,7 +31,6 @@ test:
   imports:
     - timezonefinder
     - timezonefinder.timezonefinder
-    - timezonefinder.helpers
 
 about:
   home: https://timezonefinder.michelfe.it/gui
