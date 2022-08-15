@@ -12,11 +12,16 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: poetry build
+#  noarch: python
 
 requirements:
+  build:
+    - gcc
+    - poetry
+    - cffi
+    - setuptools
   host:
     - pip
     - python 3
@@ -26,6 +31,7 @@ requirements:
     - numpy
     - h3-py
     - numba
+    - cffi
 
 test:
   imports:
