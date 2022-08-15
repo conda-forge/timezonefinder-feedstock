@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "6.0.2" %}
-{% set sha256 = "62bc28ab89b9159bbd195c4512eaaceeacb7daaf714354b0fe2aea59b1245a0d" %}
+{% set version = "6.1.0" %}
+{% set sha256 = "306808edd0f15a03be8c4f9500fd6eac6699e380f8dd0f226535894c89d98ec7" %}
 
 package:
   name: {{ name|lower }}
@@ -12,11 +12,16 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
+#  noarch: python
 
 requirements:
+  build:
+    - gcc
+    - poetry
+    - cffi
+    - setuptools
   host:
     - pip
     - python 3
@@ -26,6 +31,7 @@ requirements:
     - numpy
     - h3-py
     - numba
+    - cffi
 
 test:
   imports:
