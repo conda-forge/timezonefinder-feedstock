@@ -18,10 +18,10 @@ build:
 
 requirements:
   build:
-    - gcc
     - poetry
     - cffi
     - setuptools
+    - {{ compiler('c') }}
   host:
     - pip
     - python 3
