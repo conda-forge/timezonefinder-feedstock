@@ -1,6 +1,6 @@
 {% set name = "timezonefinder" %}
-{% set version = "6.1.0" %}
-{% set sha256 = "306808edd0f15a03be8c4f9500fd6eac6699e380f8dd0f226535894c89d98ec7" %}
+{% set version = "6.1.1" %}
+{% set sha256 = "406bea77a7baec5e2b1c2b4793ff8f40c174b6d8e894631e60864d956139afef" %}
 
 package:
   name: {{ name|lower }}
@@ -18,10 +18,10 @@ build:
 
 requirements:
   build:
-    - gcc
     - poetry
     - cffi
     - setuptools
+    - {{ compiler('c') }}
   host:
     - pip
     - python 3
