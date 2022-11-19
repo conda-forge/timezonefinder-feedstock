@@ -14,7 +14,8 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  noarch: python
+# not architecture independent due to compiled binaries
+#  noarch: python
 
 requirements:
   build:
@@ -24,13 +25,13 @@ requirements:
     - {{ compiler('c') }}
   host:
     - pip
-    - python >=3.8,<=3.11
+    - python 3
     - poetry
   run:
-    - python >=3.8,<=3.11
+    - python 3
     - numpy
     - h3-py
-    - numba
+    - numba >=0.56
     - cffi
 
 test:
