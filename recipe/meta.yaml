@@ -24,10 +24,10 @@ requirements:
     - {{ compiler('c') }}
   host:
     - pip
-    - python 3
+    - python>=3.8,<=3.11
     - poetry
   run:
-    - python 3
+    - python>=3.8,<=3.11
     - numpy
     - h3-py
     - numba
