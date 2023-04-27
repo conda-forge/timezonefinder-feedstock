@@ -10,19 +10,20 @@ source:
   sha256: d2185f82de7809f756e5f2145b766195b9980920d9ad637414944eb9795d8352
 
 build:
-  noarch: python
   script: {{ PYTHON }} -m pip install . -vv
   number: 0
 
 requirements:
+  build:
+    - {{ compiler('c') }}
   host:
-    - python >=3.8,<4.0
+    - python
     - poetry-core >=1.0.0
     - cffi
     - setuptools
     - pip
   run:
-    - python >=3.8,<4.0
+    - python
     - numpy >=1.0.0,<2.0.0
     - h3 >=3.0.0,<4.0.0
     - cffi >=1.0.0,<2.0.0
