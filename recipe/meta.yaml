@@ -24,12 +24,12 @@ requirements:
     - pip
   run:
     - python
-    - numpy >=1.0.0,<2.0.0
-    - h3-py >=3.0.0,<4.0.0
-    - cffi >=1.0.0,<2.0.0
+    - numpy >=1.18,<2
+    - h3-py >=3.7.4,<4
+    - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
-    - numba >=0.0.0,<1.0.0
+    - numba >=0.56,<1
 
 test:
   imports:
