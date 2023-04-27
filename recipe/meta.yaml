@@ -25,7 +25,7 @@ requirements:
   run:
     - python
     - numpy >=1.18,<2
-    - h3-py >=3.7.4,<4
+    - h3-py >=3.7.6,<4
     - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
