@@ -26,14 +26,13 @@ requirements:
     - setuptools
     - pip
   run:
-    - h3 >=3.7.6,<4
     - python
     - numpy >=1.18,<2
     - h3-py >=3.7.6,<4
     - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
-    - numba >=0.57,<1
+    - numba >=0.59,<1
     - pytz >=2022.7.1
 
 test:
