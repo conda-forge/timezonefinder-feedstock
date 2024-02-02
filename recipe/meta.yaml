@@ -32,7 +32,7 @@ requirements:
     - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
-    - numba >=0.56,<1
+    - numba >=0.57,<1
     - pytz >=2022.7.1
 
 test:
@@ -49,7 +49,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: fast python package for finding the timezone of any point on earth (coordinates) offline
+  summary: python package for finding the timezone of any point on earth (coordinates) offline
   description: |
     This is a fast and lightweight python package for looking up the corresponding timezone for given 
     corresponding timezone for a given lat/lng on earth entirely offline.
