@@ -7,7 +7,7 @@ Home: https://timezonefinder.michelfe.it/gui
 
 Package license: MIT
 
-Summary: fast python package for finding the timezone of any point on earth (coordinates) offline
+Summary: python package for finding the timezone of any point on earth (coordinates) offline
 
 Development: https://github.com/jannikmi/timezonefinder
 
