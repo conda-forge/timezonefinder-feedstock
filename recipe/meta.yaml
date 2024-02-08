@@ -27,14 +27,14 @@ requirements:
     - pip
   run:
     - python
-    - numpy <1.25      # py<39
-    - numpy >=1.25,<2  # py>=39
+    - numpy <1.25      # [py<39]
+    - numpy >=1.25,<2  # [py>=39]
     - h3-py >=3.7.6,<4
     - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
-    - numba <0.59      # py<312
-    - numba >=0.59,<1  # py>=312
+    - numba <0.59      # [py<312]
+    - numba >=0.59,<1  # [py>=312]
     - pytz >=2022.7.1
 
 test:
