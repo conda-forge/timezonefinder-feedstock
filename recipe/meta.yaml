@@ -1,5 +1,5 @@
 {% set name = "timezonefinder" %}
-{% set version = "6.5.0" %}
+{% set version = "6.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/timezonefinder-{{ version }}.tar.gz
-  sha256: 7afdb1516927e7766deb6da80c8bd66734a44ba3d898038fe73aef1e9cd39bb0
+  sha256: c693e374411d3e8dfd5b2786f5c4f40d3e1997c2e06d82b7dc44bb7dfd94b68c
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
@@ -19,6 +19,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cffi                                   # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - poetry-core >=1.0.0
