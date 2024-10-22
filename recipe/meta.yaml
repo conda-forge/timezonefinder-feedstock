@@ -30,7 +30,7 @@ requirements:
     - python
     - numpy >=1.21,<3  # [py<39]
     - numpy >=1.23,<3  # [py>=39]
-    - h3-py >=3.7.6,<4
+    - h3-py >4
     - cffi >=1.15.1,<2
     - setuptools >=65.5
   run_constrained:
