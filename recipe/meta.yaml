@@ -24,14 +24,13 @@ requirements:
     - python
     - poetry-core >=1.0.0
     - cffi
-    - setuptools
+    - setuptools >=65.5
     - pip
   run:
     - python
     - numpy >=1.23,<3
     - h3-py >4
     - cffi >=1.15.1,<2
-    - setuptools >=65.5
   run_constrained:
     - numba >=0.56,<1  # [py<312]
     - numba >=0.59,<1  # [py>=312]
