@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/timezonefinder-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/timezonefinder-{{ version }}.tar.gz
   sha256: 31a6b6aab0303c1118e7d9743b668acc58403a5192a470b5907ce67a465eeb2b
 
 build:
@@ -28,8 +28,7 @@ requirements:
     - pip
   run:
     - python
-    - numpy >=1.21,<3  # [py<39]
-    - numpy >=1.23,<3  # [py>=39]
+    - numpy >=1.23,<3
     - h3-py >4
     - cffi >=1.15.1,<2
     - setuptools >=65.5
