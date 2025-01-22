@@ -1,5 +1,5 @@
 {% set name = "timezonefinder" %}
-{% set version = "6.5.7" %}
+{% set version = "6.5.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/timezonefinder-{{ version }}.tar.gz
-  sha256: d9f158d9198ef59c651cdd4777d6408d095bf3a06e4511e89ba6db2c78ba6d58
+  sha256: 0993ba3416e1e117eeb88af03d805e7627d36e2b8a4b0c85eaae630c29cbb093
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -27,6 +27,7 @@ requirements:
     - setuptools >=65.5
     - pip
   run:
+    - numba >=0.56,<1
     - python
     - numpy >=1.23,<3
     - h3-py >4
