@@ -27,7 +27,6 @@ requirements:
     - setuptools >=65.5
     - pip
   run:
-    - numba >=0.56,<1
     - python
     - numpy >=1.23,<3
     - h3-py >4
