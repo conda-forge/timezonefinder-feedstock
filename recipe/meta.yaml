@@ -27,12 +27,12 @@ requirements:
     - pip
   run:
     - python
-    - numba >=0.56,<1  # [py<312]
-    - numba >=0.59,<1  # [py>=312]
     - numpy >=1.23,<3
     - h3-py >4
     - cffi >=1.15.1,<2
     - flatbuffers >=25.2.10
+    - numba >=0.56,<1  # [py<312]
+    - numba >=0.59,<1  # [py>=312]
   run_constrained:
     - pytz >=2022.7.1
 
