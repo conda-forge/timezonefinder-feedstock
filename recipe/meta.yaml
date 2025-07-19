@@ -30,6 +30,7 @@ requirements:
     - numpy >=1.23,<3
     - h3-py >4
     - cffi >=1.15.1,<2
+    - python-flatbuffers >=25.2.10
   run_constrained:
     # numba extra
     - numba >=0.56,<1  # [py<312]
