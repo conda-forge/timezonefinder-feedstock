@@ -14,7 +14,6 @@ Development: https://github.com/jannikmi/timezonefinder
 This is a fast and lightweight python package for looking up the corresponding timezone for given
 corresponding timezone for a given lat/lng on earth entirely offline.
 
-
 Current build status
 ====================
 
