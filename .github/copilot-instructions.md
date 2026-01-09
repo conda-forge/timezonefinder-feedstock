@@ -59,8 +59,9 @@ A fast and lightweight Python package for looking up the timezone for given coor
 2. Update source URL and SHA256 hash
 3. Check if dependency versions need updating
 4. Reset build number to 0 for new versions
-5. Test locally with `python build-locally.py`
-6. Submit PR and verify CI passes
+5. Validate with `make lint` to check syntax
+6. Test locally with `make build` or `python build-locally.py`
+7. Submit PR and verify CI passes
 
 ### Recipe Maintainers
 Current maintainers (from extra section): xylar, snowman2, jannikmi
@@ -84,9 +85,11 @@ Use `${{ compiler('c') }}` syntax for C compilers, ensure stdlib is included
 
 ### Fixing Build Issues
 - Check Azure Pipelines logs for specific platform failures
-- Test locally using `python build-locally.py` before pushing
+- Test locally using `make build` or `python build-locally.py` before pushing
+- Validate recipe syntax with `make lint` before committing changes
 - Consider platform-specific conditionals if needed
-- Run local linting with `conda smithy recipe-lint recipe/` to catch issues before CI
+- Run local recipe validation with rattler-build: `/path/to/rattler-build build --recipe recipe/recipe.yaml --render-only`
+- Note: `conda smithy recipe-lint` doesn't fully support rattler-build's `schema_version: 1` format yet; use rattler-build for validation or rely on CI linting
 
 ### Dropping Python Version Support
 When dropping support for older Python versions (e.g., 3.9, 3.10):
@@ -126,3 +129,33 @@ When updating NumPy version constraints (e.g., following NumPy's deprecation pol
 - Package GUI: https://timezonefinder.michelfe.it/gui
 - conda-forge documentation: https://conda-forge.org/docs/
 - rattler-build docs: https://prefix-dev.github.io/rattler-build/
+
+## Local Development Tools
+
+### Quick Commands (Makefile)
+The repository includes a Makefile with convenient commands:
+
+```bash
+make help      # Show all available commands
+make install   # Install required dependencies
+make lint      # Quick syntax validation
+make validate  # Validation with dependency solving
+make build     # Build package locally
+make clean     # Clean build artifacts
+```
+
+### Validating Recipes (schema_version: 1)
+For rattler-build recipes (schema_version: 1), use `rattler-build` for validation:
+
+```bash
+# Install rattler-build via conda
+conda install rattler-build -c conda-forge
+
+# Validate recipe syntax by rendering only
+rattler-build build --recipe recipe/recipe.yaml --render-only
+
+# Full local build test
+rattler-build build --recipe recipe/recipe.yaml
+```
+
+**Note:** The traditional `conda smithy recipe-lint` tool doesn't fully support rattler-build's `schema_version: 1` format yet. It will report false errors about `schema_version` being unexpected. The CI linting on conda-forge has been updated to support rattler-build recipes and will provide accurate validation.
