@@ -37,7 +37,8 @@ A fast and lightweight Python package for looking up the timezone for given coor
 - Use `rattler-build` as the build tool (specified in conda-forge.yml)
 - Use `pixi` as the install tool
 - Build script: `${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation`
-- Increment build number when changing recipe without version bump
+- Increment build number when changing recipe without version bump (ensures unique package identification)
+- Reset build number to 0 when incrementing version
 - Support multiple Python versions and platforms (linux_64, osx_64, win_64, aarch64, ppc64le)
 
 ### Testing
@@ -54,6 +55,25 @@ A fast and lightweight Python package for looking up the timezone for given coor
 
 ## Maintenance Guidelines
 
+### Prerequisites
+Before working with this feedstock, ensure:
+- `rattler-build` and `conda-smithy` are installed: `conda install rattler-build conda-smithy -c conda-forge`
+- Conda bin directory is in your PATH: `export PATH="$(conda info --base)/bin:$PATH"`
+- If `rattler-build` is not found during rerendering, the PATH may need to be updated
+
+### Contributing to the Feedstock
+To improve the recipe or build a new package version:
+
+1. **Fork this repository** and create a branch in your fork
+2. **Submit a PR** from your fork's branch (not from main repository branches)
+3. Upon submission, changes are automatically built on all platforms for review
+4. Once merged, the recipe is re-built and uploaded to conda-forge channel
+5. **Important**: All branches in conda-forge/timezonefinder-feedstock are immediately built and uploaded, so always use branches in forks for PRs
+
+**Build number management** (critical for package identification):
+- **Version unchanged**: Increment `build: number` in recipe.yaml
+- **Version increased**: Reset `build: number` to 0
+
 ### Version Updates
 1. Update version in context section
 2. Update source URL and SHA256 hash
@@ -62,7 +82,23 @@ A fast and lightweight Python package for looking up the timezone for given coor
 5. Validate with `make lint` to check syntax
 6. If skip conditions or dependencies changed, run `make rerender`
 7. Test locally with `make build` or `python build-locally.py`
-8. Submit PR and verify CI passes
+8. Verify checklist with `make check-checklist`
+9. Submit PR from your fork and verify CI passes
+
+### PR Checklist Validation
+Before submitting a PR, verify all requirements with:
+
+```bash
+make check-checklist
+```
+
+This validates:
+- **Fork status**: Confirms you're working on a personal fork (not the main repository)
+- **Build number**: Verifies build number is appropriate (0 for version bumps, incremented for recipe-only changes)
+- **Re-render status**: Checks if CI configuration files are properly generated
+- **License file**: Confirms license_file is specified in recipe.yaml
+
+**Important**: All branches in the main conda-forge repository are automatically built and published. Always work in a fork and submit PRs from your fork to avoid unintended builds.
 
 ### Recipe Maintainers
 Current maintainers (from extra section): xylar, snowman2, jannikmi
@@ -94,17 +130,23 @@ Use `${{ compiler('c') }}` syntax for C compilers, ensure stdlib is included
 
 ### Dropping Python Version Support
 When dropping support for older Python versions (e.g., 3.9, 3.10):
-1. **Add skip condition in recipe.yaml**: Add to build section:
+1. **Add skip condition in recipe.yaml**: Add to build section using the `match()` function:
    ```yaml
    skip:
-     - py<311
+     - match(python, '<3.11')
    ```
+   **Important**: For rattler-build recipes (schema_version: 1), use `match(python, '<3.11')` instead of `py<311`. The `py<311` syntax is conda-build specific and will cause all variants to be skipped in rattler-build, resulting in no CI configs being generated.
+   
+   The `match()` function is the rattler-build way to do version comparisons. Other examples:
+   - `match(python, '>=3.8')` - matches Python 3.8 and above
+   - `match(python, '>=3.8,<3.12')` - matches Python 3.8-3.11
+   
 2. **Do NOT add version constraints to python in requirements**: Non-noarch packages must have `python` without version constraints in host/run sections (causes linting errors)
 3. **Do NOT use python_min in conda-forge.yml**: This property is not supported and will cause linting errors
 4. **Update dependencies**: Check if any dependencies (like NumPy) also require Python version updates
 5. **Rerender the feedstock**: Run `make rerender` to regenerate CI configurations and remove builds for dropped Python versions
 6. **Commit and push**: The rerender creates a commit that needs to be pushed to apply changes
-7. The `skip: py<311` condition ensures builds only happen for supported Python versions
+7. The skip condition with `match(python, '<3.11')` ensures builds only happen for Python 3.11+
 
 ### Updating NumPy Requirements
 When updating NumPy version constraints (e.g., following NumPy's deprecation policy):
@@ -131,9 +173,13 @@ conda smithy rerender -c auto
 - Regenerates `.ci_support/*.yaml` files with correct build variants
 - Updates CI pipeline configurations (Azure Pipelines, etc.)
 - Applies conda-forge migrations
-- Removes CI configs for skipped variants (e.g., Python 3.10 after adding `skip: py<311`)
+- Removes CI configs for skipped variants (e.g., Python 3.10 after adding `skip: match(python, '<3.11')`)
 
-**Important:** Rerendering requires `rattler-build` to be in your PATH and `conda-smithy` to be up-to-date. After rerendering, commit and push the changes.
+**Troubleshooting:**
+- If `rattler-build` is not found, ensure conda bin is in PATH: `export PATH="$(conda info --base)/bin:$PATH"`
+- Rerendering requires both `rattler-build` and `conda-smithy` to be installed and in PATH
+- After rerendering, commit and push the changes
+- If no CI configs are generated, check that skip conditions use correct rattler-build syntax (e.g., `match(python, '<3.11')` not `py<311`)
 
 ### Bot Integration
 - Bot inspection uses `hint-grayskull` for automatic updates
@@ -142,6 +188,7 @@ conda smithy rerender -c auto
 
 ## Anti-Patterns to Avoid
 - ❌ Don't use old conda-build syntax (`{{ variable }}`) - use rattler-build syntax (`${{ variable }}`)
+- ❌ Don't use conda-build skip syntax (`py<311`) in rattler-build recipes - use `match(python, '<3.11')` instead
 - ❌ Don't forget to update SHA256 when changing versions
 - ❌ Don't pin dependencies too strictly unless necessary
 - ❌ Don't skip cross-compilation configuration for ARM/PowerPC
@@ -162,13 +209,14 @@ conda smithy rerender -c auto
 The repository includes a Makefile with convenient commands:
 
 ```bash
-make help      # Show all available commands
-make install   # Install required dependencies
-make lint      # Quick syntax validation
-make validate  # Validation with dependency solving
-make build     # Build package locally
-make rerender  # Regenerate CI configuration files
-make clean     # Clean build artifacts
+make help            # Show all available commands
+make install         # Install required dependencies
+make lint            # Quick syntax validation
+make validate        # Validation with dependency solving
+make build           # Build package locally
+make rerender        # Regenerate CI configuration files
+make check-checklist # Verify PR checklist requirements
+make clean           # Clean build artifacts
 ```
 
 ### Validating Recipes (schema_version: 1)
