@@ -60,8 +60,9 @@ A fast and lightweight Python package for looking up the timezone for given coor
 3. Check if dependency versions need updating
 4. Reset build number to 0 for new versions
 5. Validate with `make lint` to check syntax
-6. Test locally with `make build` or `python build-locally.py`
-7. Submit PR and verify CI passes
+6. If skip conditions or dependencies changed, run `make rerender`
+7. Test locally with `make build` or `python build-locally.py`
+8. Submit PR and verify CI passes
 
 ### Recipe Maintainers
 Current maintainers (from extra section): xylar, snowman2, jannikmi
@@ -101,13 +102,38 @@ When dropping support for older Python versions (e.g., 3.9, 3.10):
 2. **Do NOT add version constraints to python in requirements**: Non-noarch packages must have `python` without version constraints in host/run sections (causes linting errors)
 3. **Do NOT use python_min in conda-forge.yml**: This property is not supported and will cause linting errors
 4. **Update dependencies**: Check if any dependencies (like NumPy) also require Python version updates
-5. The `skip: py<311` condition ensures builds only happen for supported Python versions
+5. **Rerender the feedstock**: Run `make rerender` to regenerate CI configurations and remove builds for dropped Python versions
+6. **Commit and push**: The rerender creates a commit that needs to be pushed to apply changes
+7. The `skip: py<311` condition ensures builds only happen for supported Python versions
 
 ### Updating NumPy Requirements
 When updating NumPy version constraints (e.g., following NumPy's deprecation policy):
 - Update the constraint in the run section of requirements
 - Example: Change `numpy >=1.23,<3` to `numpy >=2,<3` when requiring NumPy 2+
 - Coordinate with Python version requirements, as NumPy 2+ may drop older Python versions
+
+### Rerendering the Feedstock
+After making recipe changes that affect build variants (Python versions, skip conditions, dependencies), you must rerender:
+
+```bash
+make rerender
+# or manually:
+conda smithy rerender -c auto
+```
+
+**When to rerender:**
+- After adding/modifying skip conditions
+- After changing Python version support
+- After updating dependencies that affect build matrix
+- After modifying conda-forge.yml configuration
+
+**What rerendering does:**
+- Regenerates `.ci_support/*.yaml` files with correct build variants
+- Updates CI pipeline configurations (Azure Pipelines, etc.)
+- Applies conda-forge migrations
+- Removes CI configs for skipped variants (e.g., Python 3.10 after adding `skip: py<311`)
+
+**Important:** Rerendering requires `rattler-build` to be in your PATH and `conda-smithy` to be up-to-date. After rerendering, commit and push the changes.
 
 ### Bot Integration
 - Bot inspection uses `hint-grayskull` for automatic updates
@@ -141,6 +167,7 @@ make install   # Install required dependencies
 make lint      # Quick syntax validation
 make validate  # Validation with dependency solving
 make build     # Build package locally
+make rerender  # Regenerate CI configuration files
 make clean     # Clean build artifacts
 ```
 

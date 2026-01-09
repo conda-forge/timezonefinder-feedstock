@@ -1,16 +1,17 @@
-.PHONY: help install lint validate build clean
+.PHONY: help install lint validate build rerender clean
 
 help:
 	@echo "Available commands:"
-	@echo "  make install   - Install required dependencies (rattler-build)"
+	@echo "  make install   - Install required dependencies (rattler-build, conda-smithy)"
 	@echo "  make lint      - Validate recipe syntax with rattler-build"
-	@echo "  make validate  - Full validation with dependency solving"
+	@echo "  make validate  - Validation with dependency solving"
 	@echo "  make build     - Build package locally with build-locally.py"
+	@echo "  make rerender  - Regenerate CI configuration files"
 	@echo "  make clean     - Clean build artifacts"
 
 install:
 	@echo "Installing required dependencies..."
-	conda install -y rattler-build -c conda-forge
+	conda install -y rattler-build conda-smithy -c conda-forge
 
 lint:
 	@echo "Validating recipe with rattler-build..."
@@ -23,6 +24,11 @@ validate:
 build:
 	@echo "Building package locally..."
 	python build-locally.py
+
+rerender:
+	@echo "Rerendering feedstock CI configuration..."
+	@echo "This regenerates .ci_support files and CI pipelines based on recipe changes."
+	conda smithy rerender -c auto
 
 clean:
 	@echo "Cleaning build artifacts..."
