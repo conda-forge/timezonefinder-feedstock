@@ -15,9 +15,10 @@ source:
 build:
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  # Note: Python >=3.11 required by upstream (requires_python in setup.py)
+  # Python 3.10 builds will fail during pip install
   skip:
     - python_impl == 'pypy'
-    - py<311
 
 requirements:
   build:
