@@ -37,7 +37,8 @@ A fast and lightweight Python package for looking up the timezone for given coor
 - Use `rattler-build` as the build tool (specified in conda-forge.yml)
 - Use `pixi` as the install tool
 - Build script: `${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation`
-- Increment build number when changing recipe without version bump
+- Increment build number when changing recipe without version bump (ensures unique package identification)
+- Reset build number to 0 when incrementing version
 - Support multiple Python versions and platforms (linux_64, osx_64, win_64, aarch64, ppc64le)
 
 ### Testing
@@ -54,6 +55,25 @@ A fast and lightweight Python package for looking up the timezone for given coor
 
 ## Maintenance Guidelines
 
+### Prerequisites
+Before working with this feedstock, ensure:
+- `rattler-build` and `conda-smithy` are installed: `conda install rattler-build conda-smithy -c conda-forge`
+- Conda bin directory is in your PATH: `export PATH="$(conda info --base)/bin:$PATH"`
+- If `rattler-build` is not found during rerendering, the PATH may need to be updated
+
+### Contributing to the Feedstock
+To improve the recipe or build a new package version:
+
+1. **Fork this repository** and create a branch in your fork
+2. **Submit a PR** from your fork's branch (not from main repository branches)
+3. Upon submission, changes are automatically built on all platforms for review
+4. Once merged, the recipe is re-built and uploaded to conda-forge channel
+5. **Important**: All branches in conda-forge/timezonefinder-feedstock are immediately built and uploaded, so always use branches in forks for PRs
+
+**Build number management** (critical for package identification):
+- **Version unchanged**: Increment `build: number` in recipe.yaml
+- **Version increased**: Reset `build: number` to 0
+
 ### Version Updates
 1. Update version in context section
 2. Update source URL and SHA256 hash
@@ -62,7 +82,23 @@ A fast and lightweight Python package for looking up the timezone for given coor
 5. Validate with `make lint` to check syntax
 6. If skip conditions or dependencies changed, run `make rerender`
 7. Test locally with `make build` or `python build-locally.py`
-8. Submit PR and verify CI passes
+8. Verify checklist with `make check-checklist`
+9. Submit PR from your fork and verify CI passes
+
+### PR Checklist Validation
+Before submitting a PR, verify all requirements with:
+
+```bash
+make check-checklist
+```
+
+This validates:
+- **Fork status**: Confirms you're working on a personal fork (not the main repository)
+- **Build number**: Verifies build number is appropriate (0 for version bumps, incremented for recipe-only changes)
+- **Re-render status**: Checks if CI configuration files are properly generated
+- **License file**: Confirms license_file is specified in recipe.yaml
+
+**Important**: All branches in the main conda-forge repository are automatically built and published. Always work in a fork and submit PRs from your fork to avoid unintended builds.
 
 ### Recipe Maintainers
 Current maintainers (from extra section): xylar, snowman2, jannikmi
@@ -133,7 +169,10 @@ conda smithy rerender -c auto
 - Applies conda-forge migrations
 - Removes CI configs for skipped variants (e.g., Python 3.10 after adding `skip: py<311`)
 
-**Important:** Rerendering requires `rattler-build` to be in your PATH and `conda-smithy` to be up-to-date. After rerendering, commit and push the changes.
+**Troubleshooting:**
+- If `rattler-build` is not found, ensure conda bin is in PATH: `export PATH="$(conda info --base)/bin:$PATH"`
+- Rerendering requires both `rattler-build` and `conda-smithy` to be installed and in PATH
+- After rerendering, commit and push the changes
 
 ### Bot Integration
 - Bot inspection uses `hint-grayskull` for automatic updates
@@ -162,13 +201,14 @@ conda smithy rerender -c auto
 The repository includes a Makefile with convenient commands:
 
 ```bash
-make help      # Show all available commands
-make install   # Install required dependencies
-make lint      # Quick syntax validation
-make validate  # Validation with dependency solving
-make build     # Build package locally
-make rerender  # Regenerate CI configuration files
-make clean     # Clean build artifacts
+make help            # Show all available commands
+make install         # Install required dependencies
+make lint            # Quick syntax validation
+make validate        # Validation with dependency solving
+make build           # Build package locally
+make rerender        # Regenerate CI configuration files
+make check-checklist # Verify PR checklist requirements
+make clean           # Clean build artifacts
 ```
 
 ### Validating Recipes (schema_version: 1)
