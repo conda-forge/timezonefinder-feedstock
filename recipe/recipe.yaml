@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: timezonefinder
+  version: "8.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/timezonefinder-${{ version }}.tar.gz
+  sha256: 16a8418fc73651b5491af891cf23973b967525ab6f4c8111c27c90fc6e22112d
+
+build:
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  skip:
+    - python_impl == 'pypy'
+    - py<311
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cffi
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - cffi
+    - setuptools >=61
+    - pip
+  run:
+    - python
+    - numpy >=2,<3
+    - h3-py >4
+    - cffi >=1.15.1,<3
+    - python-flatbuffers >=25.2.10
+
+tests:
+  - python:
+      imports:
+        - timezonefinder
+        - timezonefinder.timezonefinder
+      pip_check: true
+
+about:
+  homepage: https://timezonefinder.michelfe.it/gui
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: python package for finding the timezone of any point on earth (coordinates) offline
+  description: |
+    This is a fast and lightweight python package for looking up the corresponding timezone for given
+    corresponding timezone for a given lat/lng on earth entirely offline.
+
+  repository: https://github.com/jannikmi/timezonefinder
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - snowman2
+    - jannikmi
