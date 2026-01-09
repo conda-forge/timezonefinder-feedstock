@@ -26,12 +26,12 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
   host:
-    - python >=3.11
+    - python
     - cffi
     - setuptools >=61
     - pip
   run:
-    - python >=3.11
+    - python
     - numpy >=2,<3
     - h3-py >4
     - cffi >=1.15.1,<3
