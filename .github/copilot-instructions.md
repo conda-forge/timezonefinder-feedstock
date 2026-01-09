@@ -68,7 +68,7 @@ Current maintainers (from extra section): xylar, snowman2, jannikmi
 - Follow conda-forge guidelines for maintainer updates
 
 ### Dependencies to Monitor
-- numpy (currently >=1.23,<3)
+- numpy (currently >=2,<3)
 - h3-py (currently >4)
 - cffi (currently >=1.15.1,<3)
 - python-flatbuffers (currently >=25.2.10)
@@ -86,6 +86,25 @@ Use `${{ compiler('c') }}` syntax for C compilers, ensure stdlib is included
 - Check Azure Pipelines logs for specific platform failures
 - Test locally using `python build-locally.py` before pushing
 - Consider platform-specific conditionals if needed
+- Run local linting with `conda smithy recipe-lint recipe/` to catch issues before CI
+
+### Dropping Python Version Support
+When dropping support for older Python versions (e.g., 3.9, 3.10):
+1. **Add skip condition in recipe.yaml**: Add to build section:
+   ```yaml
+   skip:
+     - py<311
+   ```
+2. **Do NOT add version constraints to python in requirements**: Non-noarch packages must have `python` without version constraints in host/run sections (causes linting errors)
+3. **Do NOT use python_min in conda-forge.yml**: This property is not supported and will cause linting errors
+4. **Update dependencies**: Check if any dependencies (like NumPy) also require Python version updates
+5. The `skip: py<311` condition ensures builds only happen for supported Python versions
+
+### Updating NumPy Requirements
+When updating NumPy version constraints (e.g., following NumPy's deprecation policy):
+- Update the constraint in the run section of requirements
+- Example: Change `numpy >=1.23,<3` to `numpy >=2,<3` when requiring NumPy 2+
+- Coordinate with Python version requirements, as NumPy 2+ may drop older Python versions
 
 ### Bot Integration
 - Bot inspection uses `hint-grayskull` for automatic updates
@@ -99,6 +118,8 @@ Use `${{ compiler('c') }}` syntax for C compilers, ensure stdlib is included
 - ❌ Don't skip cross-compilation configuration for ARM/PowerPC
 - ❌ Don't forget to increment build number for recipe-only changes
 - ❌ Don't bypass pip_check without good reason
+- ❌ Don't add Python version constraints directly in host/run requirements for non-noarch packages (use skip conditions instead)
+- ❌ Don't use `python_min` in conda-forge.yml (not a valid property)
 
 ## External Resources
 - Upstream repository: https://github.com/jannikmi/timezonefinder
