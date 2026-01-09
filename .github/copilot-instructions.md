@@ -37,7 +37,8 @@ A fast and lightweight Python package for looking up the timezone for given coor
 - Use `rattler-build` as the build tool (specified in conda-forge.yml)
 - Use `pixi` as the install tool
 - Build script: `${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation`
-- Increment build number when changing recipe without version bump
+- Increment build number when changing recipe without version bump (ensures unique package identification)
+- Reset build number to 0 when incrementing version
 - Support multiple Python versions and platforms (linux_64, osx_64, win_64, aarch64, ppc64le)
 
 ### Testing
@@ -53,6 +54,19 @@ A fast and lightweight Python package for looking up the timezone for given coor
   - osx_arm64 → osx_64
 
 ## Maintenance Guidelines
+
+### Contributing to the Feedstock
+To improve the recipe or build a new package version:
+
+1. **Fork this repository** and create a branch in your fork
+2. **Submit a PR** from your fork's branch (not from main repository branches)
+3. Upon submission, changes are automatically built on all platforms for review
+4. Once merged, the recipe is re-built and uploaded to conda-forge channel
+5. **Important**: All branches in conda-forge/timezonefinder-feedstock are immediately built and uploaded, so always use branches in forks for PRs
+
+**Build number management** (critical for package identification):
+- **Version unchanged**: Increment `build: number` in recipe.yaml
+- **Version increased**: Reset `build: number` to 0
 
 ### Version Updates
 1. Update version in context section
