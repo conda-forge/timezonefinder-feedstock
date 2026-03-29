@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: timezonefinder
-  version: "8.2.1"
+  version: "8.2.2"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/timezonefinder-${{ version }}.tar.gz
-  sha256: 16a8418fc73651b5491af891cf23973b967525ab6f4c8111c27c90fc6e22112d
+  sha256: eb63bc7ac9975edfbd06e345a58f84d2b591bc18ff9060972cfefb813eea080b
 
 build:
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
