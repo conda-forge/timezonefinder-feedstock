@@ -34,11 +34,10 @@ requirements:
     - cffi
   run:
     - python
-    - numpy >=2
-    - h3-py >=4
+    - numpy >=2.2
     - cffi >=1.15.1,<3
     - python-flatbuffers >=25.2.10
-    - timezonefinder-data >=3.2026.3.post1,<4
+    - timezonefinder-data >=4.2026.5,<5
 
 tests:
   - python:
